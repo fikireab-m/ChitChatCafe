@@ -1,10 +1,12 @@
 import "./App.css";
-import LandingPage from "./LandingPage";
+import Login from "./pages/Auth/Login";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <>
-      <LandingPage />
+      <Login />
+      {/* <LandingPage /> */}
     </>
   );
 }
