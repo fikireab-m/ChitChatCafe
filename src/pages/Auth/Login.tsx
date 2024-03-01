@@ -75,6 +75,7 @@ const Login = () => {
               margin="normal"
               required
               fullWidth
+              size="small"
               id="username"
               label="Username"
               name="username"
@@ -84,9 +85,10 @@ const Login = () => {
               sx={{fontSize:'1rem', borderRadius:'1rem'}}
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
+              size="small"
               name="password"
               label="Password"
               type="password"
