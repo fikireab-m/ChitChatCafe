@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
+import { Link, useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -16,6 +16,10 @@ import {
   LockOutlined,
   AlternateEmailOutlined,
 } from "@mui/icons-material";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setCredential } from "../../features/auth/authSlice";
+import { useLoginMutation } from "../../features/users/usersSlice";
 
 function Copyright() {
   return (
@@ -31,20 +35,12 @@ function Copyright() {
 }
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = formData;
 
-  const onChange = (e) => {
-    e.preventDefault();
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const [login, { isLoading }] = useLoginMutation();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -55,11 +51,21 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
+    const email = data.get("email");
+    const password = data.get("password");
+    try {
+      const res = login({ email, password }).unwrap;
+      dispatch(setCredential({ ...res }));
+    } catch (err) {
+      console.log(err?.data?.message || err.error);
+    }
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [userInfo, navigate]);
 
   return (
     <Grid container component="main" sx={{ height: "90vh" }}>
@@ -136,8 +142,6 @@ const Login = () => {
               placeholder="Email address"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={onChange}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -156,8 +160,6 @@ const Login = () => {
               label="Password"
               id="password"
               type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={onChange}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
