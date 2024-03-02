@@ -5,8 +5,8 @@ import LandingPage from "./pages/LandingPage";
 function App() {
   return (
     <>
-      <Login />
-      {/* <LandingPage /> */}
+      {/* <Login /> */}
+      <LandingPage />
     </>
   );
 }
