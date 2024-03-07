@@ -33,7 +33,7 @@ export default function Login() {
         item
         xs={false}
         sm={4}
-        md={7}
+        md={6}
         sx={{
           backgroundImage: "url(/loginPic.png)",
           backgroundRepeat: "no-repeat",
@@ -41,10 +41,10 @@ export default function Login() {
           backgroundPosition: "center",
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={8}>
+      <Grid item xs={12} sm={8} md={6} component={Paper} elevation={8}>
         <Box
           sx={{
-            my: 8,
+            my: 6,
             mx: 'auto',
             maxWidth:"420px",
             display: "flex",
