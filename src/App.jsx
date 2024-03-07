@@ -1,12 +1,11 @@
-import { Outlet } from "react-router-dom";
-import "./App.css";
+import HomePage from "./Pages/Homepage";
 
-function App() {
+const App = () => {
   return (
     <>
-      <Outlet />
+    <HomePage/>
     </>
   );
-}
+};
 
 export default App;
