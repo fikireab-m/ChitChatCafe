@@ -115,7 +115,7 @@ const getDesignTokens = (mode) => ({
     background: {
       default: '#fff',
       paper: gray[50],
-      ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
+      ...(mode === 'dark' && { default: gray[800], paper: gray[700] }),
     },
     text: {
       primary: gray[800],
@@ -272,8 +272,7 @@ export default function getLPTheme(mode) {
             boxSizing: 'border-box',
             transition: 'all 100ms ease-in',
             '&:focus-visible': {
-              outline: `3px solid ${alpha(brand[500], 0.5)}`,
-              outlineOffset: '2px',
+              outline: `1px solid ${alpha(brand[500], 0.5)}`
             },
           },
         },
@@ -283,7 +282,7 @@ export default function getLPTheme(mode) {
           root: ({ theme, ownerState }) => ({
             boxSizing: 'border-box',
             boxShadow: 'none',
-            borderRadius: '10px',
+            borderRadius: '16px',
             textTransform: 'none',
             '&:active': {
               transform: 'scale(0.98)',
@@ -561,11 +560,11 @@ export default function getLPTheme(mode) {
             '& .MuiOutlinedInput-root': {
               boxSizing: 'border-box',
               minWidth: 280,
-              minHeight: 40,
+              minHeight: 48,
               height: '100%',
-              borderRadius: '10px',
+              borderRadius: '16px',
               border: '1px solid',
-              borderColor: gray[200],
+              borderColor: gray[100],
               transition: 'border-color 120ms ease-in',
               '& fieldset': {
                 border: 'none',
@@ -577,17 +576,16 @@ export default function getLPTheme(mode) {
               },
               '&.Mui-focused': {
                 borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: brand[200],
+                outline: 'none',
               },
             },
             ...(theme.palette.mode === 'dark' && {
               '& .MuiOutlinedInput-root': {
                 boxSizing: 'border-box',
                 minWidth: 280,
-                minHeight: 40,
+                minHeight: 48,
                 height: '100%',
-                borderRadius: '10px',
+                borderRadius: '16px',
                 border: '1px solid',
                 borderColor: gray[600],
                 transition: 'border-color 120ms ease-in',
@@ -601,8 +599,7 @@ export default function getLPTheme(mode) {
                 },
                 '&.Mui-focused': {
                   borderColor: brand[400],
-                  outline: '4px solid',
-                  outlineColor: alpha(brand[500], 0.5),
+                  outline: 'none'
                 },
               },
             }),
