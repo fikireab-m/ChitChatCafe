@@ -50,8 +50,8 @@ function AppAppBar({ mode, toggleColorMode }) {
               borderRadius: '999px',
               bgcolor:
                 theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.651)'
-                  : 'rgba(29, 29, 29, 0.644)',
+                  ? 'rgba(255, 255, 255, 0.548)'
+                  : 'rgba(49, 49, 49, 0.582)',
               backdropFilter: 'blur(24px)',
               maxHeight: 40,
               boxShadow:

@@ -26,7 +26,7 @@ export default function Login() {
       container
       component="section"
       bgcolor="background.default"
-      sx={{ height: "100vh", mt: 4 }}
+      sx={{ height: "80vh", mt:12}}
     >
       <CssBaseline />
       <Grid
@@ -37,19 +37,16 @@ export default function Login() {
         sx={{
           backgroundImage: "url(/loginPic.png)",
           backgroundRepeat: "no-repeat",
-          backgroundColor: (t) =>
-            t.palette.mode === "light"
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={8}>
         <Box
           sx={{
             my: 8,
-            mx: 4,
+            mx: 'auto',
+            maxWidth:"420px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -71,7 +68,6 @@ export default function Login() {
             sx={{ mt: 1 }}
           >
             <TextField
-              margin="normal"
               required
               fullWidth
               id="email"
@@ -79,6 +75,7 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              sx={{mt:2}}
             />
             <TextField
               margin="normal"
@@ -89,6 +86,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              sx={{my:2}}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
