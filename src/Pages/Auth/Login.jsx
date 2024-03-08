@@ -2,32 +2,47 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCredRequest } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { IconButton } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
+  const { user } = useSelector((state) => state.auth);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const userInfo = {
-      email: data.get("email"),
-      password: data.get("password"),
+      email: data.get("email").toString(),
+      password: data.get("password").toString(),
     };
+    console.log(userInfo);
     dispatch(setCredRequest(userInfo));
-    navigate("/");
+    if (user !== null) {
+      navigate("/");
+    }
   };
+
+  useEffect(() => {
+    if (user !== null) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   return (
     <Grid
@@ -91,15 +106,19 @@ export default function Login() {
               fullWidth
               name="password"
               placeholder="Password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
               sx={{ my: 2 }}
+              InputProps={{
+                endAdornment: (
+                  <IconButton onClick={handleClickShowPassword} edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                ),
+              }}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth
