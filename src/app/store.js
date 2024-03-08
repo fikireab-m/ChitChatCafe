@@ -10,6 +10,7 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
     }).concat(saga),
+    devTools:true,
 });
 
 export default store;
