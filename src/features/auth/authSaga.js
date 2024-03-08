@@ -6,7 +6,7 @@ import {
     setCredSuccess 
 } from "./authSlice";
 
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 
 function* loginUser(action) {
     try {
@@ -15,9 +15,9 @@ function* loginUser(action) {
             login,
             userInfo
           );
-        const token = response.data;
-        yield put(setCredSuccess(token));
-        return token;
+        const user = response.data;
+        yield put(setCredSuccess(user));
+        return user;
     } catch (e) {
         yield put(setCredError(e));
     }
@@ -25,7 +25,7 @@ function* loginUser(action) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function* logoutUser(_action) {
+function* logoutUser() {
     try {
         const response = yield call(logout);
         const res = response.data;
@@ -38,6 +38,6 @@ function* logoutUser(_action) {
 }
 
 export default function* authWatcher() {
-    yield takeEvery("auth/setCredRequest", loginUser);
-    yield takeEvery("auth/removeCredRequest", logoutUser);
+    yield takeLatest("auth/setCredRequest", loginUser);
+    yield takeLatest("auth/removeCredRequest", logoutUser);
   }

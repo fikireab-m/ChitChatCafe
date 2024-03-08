@@ -1,38 +1,37 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 
-const userInfo = localStorage.getItem('userInfo');
+const userVal = localStorage.getItem('userInfo');
 
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-        user: userInfo ? JSON.parse(userInfo) : null,
+        user: userVal ? JSON.parse(userVal) : null,
         isLoading: false,
         errorMessage: null
     },
     reducers: {
-        setCredRequest: (state, _action) => {
+        setCredRequest: (state, action) => {
             state.isLoading = true;
             state.errorMessage = null;
         },
         setCredSuccess: (state, action) => {
             state.isLoading = false;
-            const { userIfo } = action.payload;
-            state.user = userIfo;
-            localStorage.setItem('userInfo', JSON.stringify(userIfo));
+            state.user = action.payload;
+            localStorage.setItem('userInfo', JSON.stringify(action.payload));
         },
         setCredError: (state, action) => {
             state.isLoading = false;
             state.errorMessage = action.payload;
         },
-        removeCredRequest: (state, _action) => {
+        removeCredRequest: (state, action) => {
             state.isLoading = true;
             state.errorMessage = null;
         },
-        removeCredSuccess: (state, _action) => {
-            state.isLoading = false;
-            state.userIfo = null;
+        removeCredSuccess: (state, action) => {
             localStorage.removeItem('userInfo');
+            state.user = null;
+            state.isLoading = false;
         },
         removeCredError: (state, action) => {
             state.isLoading = false;
