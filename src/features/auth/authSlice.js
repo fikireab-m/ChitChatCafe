@@ -1,25 +1,25 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 
+const userInfo = localStorage.getItem('userInfo');
+
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-        user: null,
-        token: null,
+        user: userInfo ? JSON.parse(userInfo) : null,
         isLoading: false,
         errorMessage: null
     },
     reducers: {
-        // eslint-disable-next-line no-unused-vars
         setCredRequest: (state, _action) => {
             state.isLoading = true;
             state.errorMessage = null;
         },
         setCredSuccess: (state, action) => {
             state.isLoading = false;
-            const {user, accessToken} = action.payload;
-            state.user = user;
-            state.token = accessToken;
+            const { userIfo } = action.payload;
+            state.user = userIfo;
+            localStorage.setItem('userInfo', JSON.stringify(userIfo));
         },
         setCredError: (state, action) => {
             state.isLoading = false;
@@ -31,8 +31,8 @@ const authSlice = createSlice({
         },
         removeCredSuccess: (state, _action) => {
             state.isLoading = false;
-            state.user = null;
-            state.token = null;
+            state.userIfo = null;
+            localStorage.removeItem('userInfo');
         },
         removeCredError: (state, action) => {
             state.isLoading = false;
@@ -43,12 +43,12 @@ const authSlice = createSlice({
 });
 
 export const {
-setCredRequest,
-setCredSuccess,
-setCredError,
-removeCredRequest,
-removeCredSuccess,
-removeCredError
+    setCredRequest,
+    setCredSuccess,
+    setCredError,
+    removeCredRequest,
+    removeCredSuccess,
+    removeCredError
 } = authSlice.actions;
 
 export default authSlice.reducer;
