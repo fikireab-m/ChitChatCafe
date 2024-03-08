@@ -14,7 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ToggleColorMode from "./ToggleColorMode";
 import AppIcon from "../assets/appIcon.png";
 import { useSelector } from "react-redux";
-import { Avatar, Fab, IconButton } from "@mui/material";
+import PopupMenu from "./PopupMenu";
 
 const logoStyle = {
   width: "64px",
@@ -108,7 +108,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               }}
             >
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-              {!user ? (
+              {user === null ? (
                 <>
                   <Button color="primary" variant="text" size="small">
                     Sign in
@@ -118,17 +118,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Button>
                 </>
               ) : (
-                <IconButton
-                  size="small"
-                  onClick={() => {}}
-                  sx={{ padding: "2px" }}
-                >
-                  <Avatar>
-                    <Typography variant="h5" fontWeight={900} color="text.primary">
-                      {user.fname?.slice(0, 1)}
-                    </Typography>
-                  </Avatar>
-                </IconButton>
+                <PopupMenu />
               )}
             </Box>
             <Box sx={{ display: { sm: "", md: "none" } }}>
@@ -168,24 +158,38 @@ function AppAppBar({ mode, toggleColorMode }) {
                   <MenuItem>Messages</MenuItem>
                   <MenuItem>Profile</MenuItem>
                   <Divider />
-                  <MenuItem>
-                    <Button
-                      color="primary"
-                      variant="contained"
-                      sx={{ width: "100%" }}
-                    >
-                      Sign up
-                    </Button>
-                  </MenuItem>
-                  <MenuItem>
-                    <Button
-                      color="primary"
-                      variant="outlined"
-                      sx={{ width: "100%" }}
-                    >
-                      Sign in
-                    </Button>
-                  </MenuItem>
+                  {user === null ? (
+                    <>
+                      <MenuItem>
+                        <Button
+                          color="primary"
+                          variant="contained"
+                          sx={{ width: "100%" }}
+                        >
+                          Sign up
+                        </Button>
+                      </MenuItem>
+                      <MenuItem>
+                        <Button
+                          color="primary"
+                          variant="outlined"
+                          sx={{ width: "100%" }}
+                        >
+                          Sign in
+                        </Button>
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <MenuItem>
+                      <Button
+                        color="primary"
+                        variant="outlined"
+                        sx={{ width: "100%" }}
+                      >
+                        Logout
+                      </Button>
+                    </MenuItem>
+                  )}
                 </Box>
               </Drawer>
             </Box>
