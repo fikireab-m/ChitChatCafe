@@ -10,15 +10,23 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import { useDispatch } from "react-redux";
+import { setCredRequest } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const userInfo = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+    dispatch(setCredRequest(userInfo));
+    navigate("/");
   };
 
   return (
@@ -26,7 +34,7 @@ export default function Login() {
       container
       component="section"
       bgcolor="background.default"
-      sx={{ height: "80vh", mt:12}}
+      sx={{ height: "80vh", mt: 12 }}
     >
       <CssBaseline />
       <Grid
@@ -45,8 +53,8 @@ export default function Login() {
         <Box
           sx={{
             my: 6,
-            mx: 'auto',
-            maxWidth:"420px",
+            mx: "auto",
+            maxWidth: "420px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -75,7 +83,7 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
-              sx={{mt:2}}
+              sx={{ mt: 2 }}
             />
             <TextField
               margin="normal"
@@ -86,7 +94,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
-              sx={{my:2}}
+              sx={{ my: 2 }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

@@ -1,3 +1,4 @@
+import { login, logout } from "../../api";
 import { 
     removeCredError, 
     removeCredSuccess, 
@@ -11,7 +12,7 @@ function* loginUser(action) {
     try {
         const userInfo = action.payload;
         const response = yield call(
-            // Api login method,
+            login,
             userInfo
           );
         const token = response.data;
@@ -26,9 +27,7 @@ function* loginUser(action) {
 // eslint-disable-next-line no-unused-vars
 function* logoutUser(_action) {
     try {
-        const response = yield call(
-            // Api logout method
-          );
+        const response = yield call(logout);
         const res = response.data;
         yield put(removeCredSuccess(res));
         return;
