@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Login from "./Pages/Auth/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import getLPTheme from "./getLPTheme";
+import HomePage from "./Pages/Homepage";
 
 const App = () => {
   const [mode, setMode] = useState("light");
@@ -29,6 +30,7 @@ const App = () => {
               path="/"
               element={
                 <Box sx={{ bgcolor: "background.default" }}>
+                  <HomePage />
                   <Footer />
                 </Box>
               }
