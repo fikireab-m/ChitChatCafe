@@ -13,8 +13,9 @@ import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import ToggleColorMode from "./ToggleColorMode";
 import AppIcon from "../assets/appIcon.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PopupMenu from "./PopupMenu";
+import { removeCredRequest } from "../features/auth/authSlice";
 
 const logoStyle = {
   width: "64px",
@@ -24,11 +25,17 @@ const logoStyle = {
 };
 
 function AppAppBar({ mode, toggleColorMode }) {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
   const { user } = useSelector((state) => state.auth);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+
+  const handleLogout = () => {
+    dispatch(removeCredRequest());
   };
 
   return (
@@ -118,7 +125,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Button>
                 </>
               ) : (
-                <PopupMenu />
+                <PopupMenu logout={handleLogout} />
               )}
             </Box>
             <Box sx={{ display: { sm: "", md: "none" } }}>
@@ -182,6 +189,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                   ) : (
                     <MenuItem>
                       <Button
+                        onClick={handleLogout}
                         color="primary"
                         variant="outlined"
                         sx={{ width: "100%" }}

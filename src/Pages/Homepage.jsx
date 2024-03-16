@@ -39,7 +39,7 @@ export default function HomePage() {
           pb: { xs: 8, sm: 12 },
         }}
       >
-        <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "70%" } }}>
+        <Stack spacing={2} sx={{ width: { xs: "100%", sm: "70%" } }}>
           <Typography
             component="h1"
             variant="h1"
@@ -73,7 +73,6 @@ export default function HomePage() {
             direction={{ xs: "column", sm: "row" }}
             alignSelf="center"
             spacing={1}
-            useFlexGap
             sx={{ pt: 2, width: { xs: "100%", sm: "auto" } }}
           >
             <Button
