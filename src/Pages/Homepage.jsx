@@ -8,18 +8,7 @@ import Card from "../components/Card";
 
 export default function HomePage() {
   return (
-    <Box
-      id="hero"
-      sx={(theme) => ({
-        width: "100%",
-        backgroundImage:
-          theme.palette.mode === "light"
-            ? "linear-gradient(180deg, #CEE5FD, #FFF)"
-            : "linear-gradient(#02294F, #090E10)",
-        backgroundSize: "100% 20%",
-        backgroundRepeat: "no-repeat",
-      })}
-    >
+    <Box id="home" sx={{ width: "100%" }}>
       <Container
         sx={{
           display: "flex",
@@ -61,7 +50,7 @@ export default function HomePage() {
           </Fab>
         </Stack>
         {Array.from(Array(6)).map((el) => (
-          <Card key={el}/>
+          <Card key={el} />
         ))}
       </Container>
     </Box>

@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as React from "react";
 import Popover from "@mui/material/Popover";
-import Button from "@mui/material/Button";
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Avatar, Box, IconButton, MenuItem } from "@mui/material";
 import { Person } from "@mui/icons-material";
 
 export default function PopupMenu({ logout }) {
@@ -53,15 +52,15 @@ export default function PopupMenu({ logout }) {
             alignItems: "flex-start",
           }}
         >
-          <Button variant="text" size="small">
+          <MenuItem variant="text" size="small">
             Notifications
-          </Button>
-          <Button variant="text" size="small">
+          </MenuItem>
+          <MenuItem variant="text" size="small">
             Settings
-          </Button>
-          <Button onClick={logout} variant="text" size="small">
+          </MenuItem>
+          <MenuItem onClick={logout} variant="text" size="small">
             Logout
-          </Button>
+          </MenuItem>
         </Box>
       </Popover>
     </div>

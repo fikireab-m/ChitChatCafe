@@ -9,17 +9,12 @@ const Card = () => {
         alignSelf: "center",
         width: { xs: "100%", sm: "70%" },
         maxHeight: 700,
-        outline: "1px solid",
         borderRadius: "1rem",
         overflow: "hidden",
-        outlineColor:
-          theme.palette.mode === "light"
-            ? alpha("#BFCCD9", 0.5)
-            : alpha("#9CCCFC", 0.1),
         boxShadow:
           theme.palette.mode === "light"
-            ? `0 0 12px 8px ${alpha("#9CCCFC", 0.2)}`
-            : `0 0 24px 12px ${alpha("#033363", 0.2)}`,
+            ? `0 0 12px 8px ${alpha("#d8d8d8", 0.2)}`
+            : `0 0 24px 12px ${alpha("#575757", 0.2)}`,
       })}
     >
       <img
@@ -72,6 +67,7 @@ const Card = () => {
           ].map((el) => (
             <Button
               key={el}
+              size="small"
               variant="text"
               color="primary"
               sx={{
@@ -87,7 +83,7 @@ const Card = () => {
           ))}
         </Box>
 
-        <IconButton color="primary">
+        <IconButton size="small" color="primary">
           <MoreVertRounded />
         </IconButton>
       </Box>
