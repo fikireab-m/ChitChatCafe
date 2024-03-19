@@ -3,7 +3,7 @@ import * as React from "react";
 import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import { Avatar, Box, IconButton } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import { Person } from "@mui/icons-material";
 
 export default function PopupMenu({ logout }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,7 +27,7 @@ export default function PopupMenu({ logout }) {
         onClick={handleClick}
       >
         <Avatar>
-          <Add />
+          <Person />
         </Avatar>
       </IconButton>
       <Popover

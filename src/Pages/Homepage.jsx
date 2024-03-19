@@ -1,22 +1,12 @@
+import { Send } from "@mui/icons-material";
+import { Fab } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import { useDispatch, useSelector } from "react-redux";
-import { removeCredRequest } from "../features/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Card from "../components/Card";
 
 export default function HomePage() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { isLoading } = useSelector((state) => state.auth);
-
-  const handleLogout = () => {
-    dispatch(removeCredRequest());
-    if (!isLoading) navigate("/auth");
-  };
-
   return (
     <Box
       id="hero"
@@ -35,56 +25,44 @@ export default function HomePage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          pt: { xs: 14, sm: 20 },
-          pb: { xs: 8, sm: 12 },
+          pt: { xs: 4, sm: 10 },
+          pb: 4,
         }}
       >
-        <Stack spacing={2} sx={{ width: { xs: "100%", sm: "70%" } }}>
-          <Typography
-            component="h1"
-            variant="h1"
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignSelf: "center",
-              textAlign: "center",
+        <Stack
+          direction="row"
+          alignSelf="center"
+          spacing={1}
+          alignItems="center"
+          sx={{ mt: 2, width: { xs: "100%", sm: "70%", lg: "50%" } }}
+        >
+          <TextField
+            id="outlined-basic"
+            hiddenLabel
+            size="small"
+            fullWidth
+            multiline
+            maxRows={6}
+            minRows={2}
+            variant="outlined"
+            aria-label="What do you have in mind?"
+            placeholder="What do you have in mind?"
+            inputProps={{
+              autocomplete: "off",
+              ariaLabel: "What do you have in mind?",
             }}
+          />
+          <Fab
+            variant="extended"
+            color="primary"
+            sx={{ width: "3rem", height: "3rem" }}
           >
-            Our latest&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={{
-                color: (theme) =>
-                  theme.palette.mode === "light"
-                    ? "primary.main"
-                    : "primary.light",
-              }}
-            >
-              Posts
-            </Typography>
-          </Typography>
-          <Typography variant="body1" textAlign="center" color="text.secondary">
-            Explore our latest posts about MERN stack development and how easy
-            it is. <br />
-            Elevate your experience with top-tier features and services.
-          </Typography>
-          <Box
-            direction={{ xs: "column", sm: "row" }}
-            alignSelf="center"
-            spacing={1}
-            sx={{ pt: 2, width: { xs: "100%", sm: "auto" } }}
-          >
-            <Button
-              onClick={handleLogout}
-              variant="contained"
-              color="primary"
-              sx={{ px: 8 }}
-            >
-              Logout
-            </Button>
-          </Box>
+            <Send />
+          </Fab>
         </Stack>
+        {Array.from(Array(6)).map((el) => (
+          <Card key={el}/>
+        ))}
       </Container>
     </Box>
   );
