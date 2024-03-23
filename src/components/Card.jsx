@@ -49,7 +49,7 @@ const Card = () => {
           display: "flex",
           gap: 1,
           justifyItems: "space-between",
-          background: alpha("#cccccc", 0.2),
+          background: alpha("#cccccc", 0.1),
         }}
       >
         <Box

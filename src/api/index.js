@@ -8,3 +8,8 @@ export const login = (userInfo) => {
 export const logout = () => {
   return axios.post(`${BASE_URL}/users/logout`);
 };
+
+
+export const createPost = (post) => {
+  return axios.post(`${BASE_URL}/posts`, post);
+}
