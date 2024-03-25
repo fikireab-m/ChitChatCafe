@@ -37,7 +37,7 @@ export default function HomePage() {
   useEffect(() => {
     dispatch(getPostsRequest());
   }, [dispatch]);
-  console.log(posts[0].title)
+  
   return (
     <Box id="home" sx={{ width: "100%" }}>
       <Container

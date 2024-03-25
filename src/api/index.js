@@ -11,7 +11,7 @@ export const logout = () => {
 
 
 export const createPost = (post) => {
-  return axios.post(`${BASE_URL}/posts`, post);
+  return axios.post(`${BASE_URL}/posts`, post, {withCredentials: true});
 }
 
 export const getPostsApi = () => {

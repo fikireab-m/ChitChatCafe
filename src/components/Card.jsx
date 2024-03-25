@@ -2,7 +2,7 @@
 import { Comment, MoreVertRounded, Share, ThumbUp } from "@mui/icons-material";
 import { Box, Button, IconButton, Typography, alpha } from "@mui/material";
 
-const Card = ({post}) => {
+const Card = ({ post }) => {
   return (
     <Box
       sx={(theme) => ({
@@ -31,9 +31,7 @@ const Card = ({post}) => {
         }}
       >
         <Typography variant="h6">{post.title}</Typography>
-        <Typography variant="body2">
-          {post.body}
-        </Typography>
+        <Typography variant="body2">{post.body}</Typography>
       </Box>
       <Box
         sx={{
@@ -49,33 +47,60 @@ const Card = ({post}) => {
       >
         <Box
           sx={{
-            flex:1,
+            flex: 1,
             display: "flex",
             gap: 1,
             justifyItems: "center",
           }}
         >
-          {[
-            <ThumbUp fontSize="small" key={0} />,
-            <Comment fontSize="small" key={1} />,
-            <Share fontSize="small" key={2} />,
-          ].map((el) => (
-            <Button
-              key={el}
-              size="small"
-              variant="text"
-              color="primary"
-              sx={{
-                p: 0,
-                display: "flex",
-                gap: 1,
-                justifyItems: "center",
-              }}
-            >
-              {el}
-              <Typography variant="body2">99+</Typography>
-            </Button>
-          ))}
+          <Button
+            size="small"
+            variant="text"
+            color="primary"
+            sx={{
+              p: 0,
+              display: "flex",
+              gap: 1,
+              justifyItems: "center",
+            }}
+          >
+            {imporessionIcons[0]}
+            <Typography variant="body2">
+              {post.impressions["likes"].length}
+            </Typography>
+          </Button>
+          <Button
+            size="small"
+            variant="text"
+            color="primary"
+            sx={{
+              p: 0,
+              display: "flex",
+              gap: 1,
+              justifyItems: "center",
+            }}
+          >
+            {imporessionIcons[1]}
+            <Typography variant="body2">
+              {post.impressions["comments"].length}
+            </Typography>
+          </Button>
+          <Button
+            size="small"
+            variant="text"
+            color="primary"
+            sx={{
+              p: 0,
+              display: "flex",
+              gap: 1,
+              justifyItems: "center",
+            }}
+          >
+            {imporessionIcons[2]}
+            <Typography variant="body2">
+              {post.impressions["shares"].length}
+            </Typography>
+          </Button>
         </Box>
 
         <IconButton size="small" color="primary">
@@ -87,3 +112,8 @@ const Card = ({post}) => {
 };
 
 export default Card;
+const imporessionIcons = [
+  <ThumbUp fontSize="small" key={0} />,
+  <Comment fontSize="small" key={1} />,
+  <Share fontSize="small" key={2} />,
+];
