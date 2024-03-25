@@ -31,7 +31,6 @@ export default function Login() {
       email: data.get("email").toString(),
       password: data.get("password").toString(),
     };
-    console.log(userInfo);
     dispatch(setCredRequest(userInfo));
     if (user !== null) {
       navigate("/");

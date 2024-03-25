@@ -13,3 +13,7 @@ export const logout = () => {
 export const createPost = (post) => {
   return axios.post(`${BASE_URL}/posts`, post);
 }
+
+export const getPostsApi = () => {
+  return axios.get(`${BASE_URL}/posts`);
+}

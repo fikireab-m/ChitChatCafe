@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Comment, MoreVertRounded, Share, ThumbUp } from "@mui/icons-material";
 import { Box, Button, IconButton, Typography, alpha } from "@mui/material";
 
-const Card = () => {
+const Card = ({post}) => {
   return (
     <Box
       sx={(theme) => ({
@@ -29,15 +30,9 @@ const Card = () => {
           width: "100%",
         }}
       >
-        <Typography variant="h6">Title lorem</Typography>
+        <Typography variant="h6">{post.title}</Typography>
         <Typography variant="body2">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt
-          beatae tenetur id, praesentium suscipit nulla illo animi voluptas non
-          ipsam molestiae sunt laboriosam aliquid, natus repellendus veritatis
-          adipisci iusto corporis.Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Alias, quam? Aut distinctio eveniet numquam sint
-          earum aliquid voluptatum asperiores, similique minus, possimus ipsa
-          nesciunt debitis natus corporis error esse reiciendis.
+          {post.body}
         </Typography>
       </Box>
       <Box

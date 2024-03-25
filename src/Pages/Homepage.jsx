@@ -5,9 +5,9 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Card from "../components/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPostRequest } from "../features/post/postSlice";
+import { addPostRequest, getPostsRequest } from "../features/post/postSlice";
 
 export default function HomePage() {
   // const [showTextArea, setShowTextArea] = useState(false);
@@ -26,11 +26,18 @@ export default function HomePage() {
     setBody(e.target.value);
   };
   const handleSubmit = () => {
-    const post = { title, body };
-    dispatch(addPostRequest(post));
-    setTitle("");
-    setBody("");
+    if (title.length > 3 && body.length > 8) {
+      const post = { title, body };
+      dispatch(addPostRequest(post));
+      setTitle("");
+      setBody("");
+    }
   };
+
+  useEffect(() => {
+    dispatch(getPostsRequest());
+  }, [dispatch]);
+  console.log(posts[0].title)
   return (
     <Box id="home" sx={{ width: "100%" }}>
       <Container
@@ -38,7 +45,7 @@ export default function HomePage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          pt: { xs: 4, sm: 10 },
+          pt: 10,
           pb: 4,
         }}
       >
@@ -99,8 +106,8 @@ export default function HomePage() {
             <Send />
           </Fab>
         </Stack>
-        {posts.map((el, index) => (
-          <Card key={index} />
+        {posts.map((post, index) => (
+          <Card key={index} post={post}/>
         ))}
       </Container>
     </Box>
